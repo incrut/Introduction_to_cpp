@@ -1,0 +1,242 @@
+1) What is the difference between i++ and ++i ?
+    in ++i the value of i is incremented before the statement is evaluated.
+    It means that the value is incremented first, and then the updated value is used in the expression.
+    in i++ the value of i is incremented after the statement is evaluated. 
+    The original value of i is used in the expression, and then it is incremented.
+
+        int i = 5;
+
+        // Pre-increment: increment i first, then use the updated value
+        int a = ++i;  // a = 6, i = 6
+
+        // Post-increment: use the original value, then increment i
+        int b = i++;  // b = 6, i = 7
+
+2) What is the difference between public , private and protected class access rights ?
+    Members declared as PUBLIC are accessible from anywhere in the program. 
+    They can be accessed by objects of the class, as well as from outside the class. 
+    Public members represent the interface of the class, allowing other parts of the program to interact with the class.
+
+    Members declared as PRIVATE are only accessible from within the same class. 
+    They cannot be accessed by objects of the class or from outside the class. 
+    Private members are used to encapsulate the internal details of a class and hide them from external access. 
+    Typically, you would provide public member functions (methods) to manipulate or access private members indirectly.
+
+    Members declared as PROTECTED are similar to private members in that they are not accessible from outside the class. 
+    However, they can be accessed by derived classes (classes that inherit from the base class). 
+    Protected members are used to provide access to derived classes while still keeping them hidden from the rest of the program.
+
+3) How do the same access rights work if the class also has a superclass with some kind of access rights? 
+    (Which functions are visible and what are not?)
+
+    Public inheritance: If the derived class inherits publicly from the base class (class Derived : public Base), the following rules apply:
+    Public members of the base class remain public members of the derived class.
+    Protected members of the base class remain protected members of the derived class.
+    Private members of the base class are not accessible directly from the derived class. They remain private to the base class.
+
+    Protected inheritance: If the derived class inherits protectedly from the base class (class Derived : protected Base), the following rules apply:
+    Public members of the base class become protected members of the derived class.
+    Protected members of the base class remain protected members of the derived class.
+    Private members of the base class are not accessible directly from the derived class. They remain private to the base class.
+
+    Private inheritance: If the derived class inherits privately from the base class (class Derived : private Base), the following rules apply:
+    Public members of the base class become private members of the derived class.
+    Protected members of the base class become private members of the derived class.
+    Private members of the base class are not accessible directly from the derived class. They remain private to the base class.
+
+4) What is the syntax for documenting a Doxygen function?
+
+    Doxygen is a popular documentation generation tool for C++ (and other languages). 
+    To document a function using Doxygen, you need to follow a specific syntax. Here's an example of how to document a function:
+
+        /**
+        * Brief description of the function.
+        *
+        * Detailed description of the function.
+        * You can provide additional details and information here.
+        *
+        * @param param1 Description of the first parameter.
+        * @param param2 Description of the second parameter.
+        * @return Description of the return value.
+        * @throws ExceptionType Description of the exception that can be thrown.
+        * @see RelatedFunction() Provide a reference to a related function.
+        * @note Additional note or important information about the function.
+        * @warning Any warning or caution related to the function.
+        */
+        ReturnType functionName(ParamType param1, ParamType param2) {
+            // Function implementation
+        }
+
+    /** ... */: This is the opening and closing of a Doxygen comment block. It signifies that the following block is intended for Doxygen documentation.
+    *: The asterisk is used at the beginning of each line within the comment block to indicate a documentation line.
+    Brief description of the function.: This line provides a brief one-line description of the function.
+    Detailed description of the function.: This block provides a more detailed description of the function's purpose, behavior, and any other relevant details.
+    @param: Use @param to document the parameters of the function. Replace param1, param2, etc. with the actual parameter names and provide a description for each parameter.
+    @return: Use @return to document the return value of the function. Provide a description of what the function returns.
+    @throws: Use @throws to document the exceptions that the function can throw. Specify the exception type and provide a description of the exception.
+    @see: Use @see to reference related functions or entities. You can provide a reference to other functions, classes, or any related information.
+    @note: Use @note to include any additional notes or important information about the function.
+    @warning: Use @warning to specify any warnings or cautions related to the function.
+
+5) What does the life cycle of an object look like 
+(when is the constructor called , when is the destructor called, what happens in between?)
+
+    The life cycle of an object in C++ consists of several stages, including object creation, object usage, and object destruction.
+
+    Object Creation:
+
+    Memory Allocation: When an object is created, memory is allocated for it. This memory allocation can happen on the stack or the heap, depending on how the object is declared.
+    Constructor Call: Once the memory is allocated, the constructor of the object is called. The constructor initializes the object's data members and performs any necessary setup. Constructors are invoked in the order of base classes first and then derived classes.
+    Initialization: Inside the constructor, you can initialize member variables, allocate resources, or perform other necessary initialization tasks.
+
+    Object Usage:
+
+    Object Operations: Once the object is fully constructed, it can be used to perform operations as intended. You can call member functions, access member variables, and perform any other tasks required by the object's design and purpose.
+
+    Object Destruction:
+
+    Destructor Call: When an object goes out of scope or is explicitly destroyed, the destructor is called. The destructor is responsible for cleaning up resources used by the object, such as releasing dynamically allocated memory or closing files. Destructors are invoked in the reverse order of construction (derived classes first, then base classes).
+    Resource Deallocation: Inside the destructor, you can release any resources held by the object and perform any necessary cleanup tasks.
+    Memory Deallocation: If the object was dynamically allocated (using new), the memory occupied by the object is deallocated using delete. If the object was created on the stack, the memory is automatically freed when the object goes out of scope.
+
+6) How to get elements from an array?
+
+    In C++, you can access elements from an array using array indexing.
+
+        int myArray[5] = {10, 20, 30, 40, 50};
+        int firstElement = myArray[0];   // Access the first element (index 0)
+        myArray[3] = 42;   // Modify the fourth element (index 3)
+
+7) How do you get elements from an array of pointers ?
+
+    To access elements from an array of pointers in C++, you can use a combination of array indexing and dereferencing the pointer.
+
+        int a = 10;
+        int b = 20;
+        int c = 30;
+
+        int* ptrArray[3];  // Array of pointers to integers
+
+        ptrArray[0] = &a;  // Assign the address of 'a' to the first element
+        ptrArray[1] = &b;  // Assign the address of 'b' to the second element
+        ptrArray[2] = &c;  // Assign the address of 'c' to the third element
+
+        // Accessing elements from the array of pointers
+        int* firstElement = ptrArray[0];    // Access the first element (pointer to 'a')
+        int* secondElement = ptrArray[1];   // Access the second element (pointer to 'b')
+
+        // Dereferencing pointers to get the values
+        int valueA = *ptrArray[0];    // Dereference the first element to get the value of 'a'
+        int valueB = *ptrArray[1];    // Dereference the second element to get the value of 'b'
+
+        // Modifying the values through the pointers
+        *ptrArray[2] = 42;    // Modify the value of 'c' through the third element pointer
+
+        // Outputting the values
+        cout << valueA << endl;    // Output: 10
+        cout << valueB << endl;    // Output: 20
+        cout << c << endl;         // Output: 42
+
+8) How do you get the nth element when the array contains only pointers?
+
+
+    If you have an array of pointers and you want to access the nth element (pointer) in the array, 
+    you can use array indexing to retrieve the pointer and then dereference it to access the value or object it points to.
+
+        int a = 10;
+        int b = 20;
+        int c = 30;
+
+        int* ptrArray[3];  // Array of pointers to integers
+
+        ptrArray[0] = &a;  // Assign the address of 'a' to the first element
+        ptrArray[1] = &b;  // Assign the address of 'b' to the second element
+        ptrArray[2] = &c;  // Assign the address of 'c' to the third element
+
+        // Accessing the nth element (pointer) in the array
+        int* nthElement = ptrArray[n];  // Replace 'n' with the desired index
+
+        // Dereferencing the pointer to access the value or object it points to
+        int value = *nthElement;  // Dereference the pointer to retrieve the value
+
+        // Outputting the value
+        cout << value << endl;
+
+9) What is the difference between a pointer and a reference and how do they work in the context of classes. 
+(How to access variables/methods?)
+
+    In C++, both pointers and references are used to indirectly access variables or objects. 
+    However, there are some key differences between them:
+
+    Syntax and Initialization:
+
+    Pointers: Pointers are declared using the * symbol and are initialized with the address of another variable using the address-of operator &. Pointers can be reassigned to point to different objects or be set to nullptr.
+    References: References are declared using the & symbol and must be initialized when declared. Once initialized, a reference cannot be reseated to refer to a different object. It acts as an alias to the object it references.
+    Nullability:
+
+    Pointers: Pointers can have a null value, meaning they do not point to any valid object. This allows them to be checked for nullability.
+    References: References must always be bound to a valid object upon initialization. They cannot be null, so there's no need to check for nullability.
+    Memory Management:
+
+    Pointers: Pointers allow for manual memory management using new and delete to dynamically allocate and deallocate memory for objects.
+    References: References do not participate in memory management. They are simply aliases to existing objects and cannot be used for dynamic memory allocation.
+    Regarding classes, both pointers and references can be used to access variables and methods of class objects. Here's how you can access class members using pointers and references:
+
+        Pointers to Objects:
+        MyClass* ptr = new MyClass();   // Create a dynamic object using a pointer
+
+        // Access variables and methods using pointer dereferencing (->)
+        int value = ptr->myVariable;    // Access a variable
+        ptr->myMethod();                // Call a method
+
+        delete ptr;                     // Deallocate memory
+
+            References to Objects:
+            MyClass obj;        // Create an object
+            MyClass& ref = obj; // Create a reference to the object
+
+            // Access variables and methods using the reference (.)
+            int value = ref.myVariable;    // Access a variable
+            ref.myMethod();                // Call a method
+
+10) The nature of the delete command, when to delete and when to delete[] .
+
+    The delete operator in C++ is used to deallocate memory that was previously allocated using the new operator. 
+    However, there are different scenarios for when to use delete and delete[] depending on how the memory was allocated:
+
+        Delete for Single Object:
+        When you allocate memory for a single object using new, you should deallocate it using delete. For example:
+
+        MyClass* obj = new MyClass();  // Allocate memory for a single object
+        // ...
+        delete obj;                    // Deallocate memory for the single object
+
+            Delete for Array of Objects:
+            When you allocate memory for an array of objects using new[], you should deallocate it using delete[]. For example:
+            MyClass* array = new MyClass[5];  // Allocate memory for an array of objects
+            // ...
+            delete[] array;                   // Deallocate memory for the array of objects
+
+    Using delete instead of delete[] (or vice versa) for the wrong type of allocation leads to undefined behavior. The correct deallocation method must match the corresponding allocation method.
+
+    It's important to note that:
+
+    When using delete or delete[], the destructor of each object in the allocated memory is called before deallocation.
+    The memory allocated with new and new[] should always be deallocated to prevent memory leaks.
+
+12) The Quad class can be modified. Right now there is an issue with it. 
+The issue is that the Rectangle class is derived from the Quad class, which represents a general quadrilateral. 
+However, a rectangle is a special case of a quadrilateral with specific properties, 
+such as having two pairs of equal-length sides and right angles at the corners.
+
+To overcome this issue and better model the Rectangle class, we can make the following improvements:
+
+Remove the inheritance from the Quad class: 
+Since a rectangle has distinct properties, it is not necessary to derive it from a general quadrilateral class.
+
+Define separate member variables for length and width: 
+Instead of using the side1 and side2 variables inherited from the Quad class, 
+it's clearer to have separate variables specifically for the length and width of the rectangle.
+
+Provide a constructor to initialize the length and width: 
+It's helpful to have a constructor in the Rectangle class that allows us to set the length and width when creating a Rectangle object.
